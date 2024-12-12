@@ -1,7 +1,17 @@
 package main
 
+import (
+	"time"
+	"fmt"
+)
+
+
+
+
 
 func main(){
+
+	start := time.Now()
 	// Day1()
 	// Day2()
 	// Day3()
@@ -12,5 +22,11 @@ func main(){
 	// Day8()
 	// Day9()
 	// Day10()
-	Day11()
+	// Day11()
+	Day12()
+
+
+
+	duration := time.Since(start)
+	fmt.Println("Time elapsed: ", duration)
 }
