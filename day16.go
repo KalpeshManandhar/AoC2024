@@ -28,37 +28,6 @@ func findStartEnd(grid []string) (Vec2, Vec2){
 }
 
 
-type Score struct{
-	score int
-	pos Vec2
-	dir Vec2
-}
-
-type ScoreHeap []Score
-
-func (h ScoreHeap) Len() int{
-	return len(h)
-} 
-
-func (h ScoreHeap) Less(i, j int) bool{
-	return h[i].score < h[j].score
-} 
-
-func (h ScoreHeap) Swap(i, j int){
-	h[i], h[j] = h[j], h[i]
-} 
-
-func (h *ScoreHeap) Push(x any){
-	*h = append(*h, x.(Score))
-}
-
-func (h *ScoreHeap) Pop() any{
-	x := (*h)[len(*h) - 1]
-	*h = (*h)[:len(*h) - 1]
-	return x
-}
-
-
 type NodeInfo struct {
 	score [4]int
 	from []Vec2
