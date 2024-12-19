@@ -117,6 +117,8 @@ func backwardsAssign(cpu CPU, Aend int, instructionNo int) int {
 	
 	for Astart:= Astart_left; Astart <= Astart_right; Astart++{
 		cpu.A = Astart
+		cpu.B = 0
+		cpu.C = 0
 		cpu.ip = 0
 		output := simulateUntilOutput(cpu)
 		
