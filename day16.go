@@ -42,16 +42,22 @@ var directionIndex = map[Vec2]int{
 }
 
 
+type ScoreInfo_d16 struct{
+	pos Vec2
+	dir Vec2
+}
+
+
 
 func Day16(){
 	fmt.Println("--- Day 16: Reindeer Maze ---")
 
 	file, err := os.Open("./inputs/day16.txt")
-	defer file.Close()
-	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
+	
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())
@@ -64,9 +70,9 @@ func Day16(){
 
 	start, end := findStartEnd(grid)
 
-	nodeHeap := make(ScoreHeap, 0)
+	nodeHeap := make(ScoreHeap[ScoreInfo_d16], 0)
 	heap.Init(&nodeHeap)
-	heap.Push(&nodeHeap, Score{0, start, DIR_RIGHT})
+	heap.Push(&nodeHeap, Score[ScoreInfo_d16]{score: 0, info: ScoreInfo_d16{start, DIR_RIGHT}})
 
 	paths := make([]NodeInfo, m*n)
 	for i := range paths{
@@ -83,13 +89,13 @@ func Day16(){
 
 	// Dijkstra's
 	for nodeHeap.Len() > 0{
-		node := heap.Pop(&nodeHeap).(Score)
-		pos := node.pos
+		node := heap.Pop(&nodeHeap).(Score[ScoreInfo_d16])
+		pos := node.info.pos
 		if (visited[pos.y * n + pos.x]){
 			continue
 		}
 
-		dir := node.dir
+		dir := node.info.dir
 		visited[pos.y * n + pos.x] = true
 		
 		// set the cost for current node in each direction
@@ -121,7 +127,7 @@ func Day16(){
 				return
 			}
 			
-			heap.Push(&nodeHeap, Score{score, neighbour, inDirection})
+			heap.Push(&nodeHeap, Score[ScoreInfo_d16]{score: score, info: ScoreInfo_d16{neighbour, inDirection}})
 		}
 		
 		

@@ -21,17 +21,6 @@ func countDigits(n int) int{
 
 
 
-/*
-1
-2024
-20 24
-2 0 2 4
-4048 1 4048 8096
-40 48 2024 4048 8096  
-
-
-
-*/
 
 type Key struct{
 	val, n int
@@ -77,11 +66,11 @@ func Day11(){
 	fmt.Println("--- Day 11: Plutonian Pebbles ---")
 
 	file, err := os.Open("./inputs/day11.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

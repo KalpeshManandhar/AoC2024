@@ -16,11 +16,11 @@ func Day12(){
 	fmt.Println("--- Day 12: Garden Groups ---")
 
 	file, err := os.Open("./inputs/day12.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

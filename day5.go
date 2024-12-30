@@ -44,11 +44,11 @@ func Day5(){
 	fmt.Println("--- Day 5: Print Queue ---")
 
 	file, err := os.Open("./inputs/day5.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

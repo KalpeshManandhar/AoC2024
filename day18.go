@@ -10,15 +10,16 @@ import (
 
 
 
+
 func Day18(){
 	fmt.Println("--- Day 18: RAM Run ---")
 
 	file, err := os.Open("./inputs/day18.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())
@@ -66,17 +67,17 @@ func Day18(){
 	findMinMoves := func (grid []byte) int {
 		visited := make([]bool, m*n)
 		
-		nodeHeap := make(ScoreHeap, 0)
+		nodeHeap := make(ScoreHeap[Vec2], 0)
 		heap.Init(&nodeHeap)
-		heap.Push(&nodeHeap, Score{score: 0, pos: start})
+		heap.Push(&nodeHeap, Score[Vec2]{score: 0, info: start})
 		visited[start.y * n + start.x] = true
 
 		minMoves := 0
 		
 		// Dijkstra's
 		for nodeHeap.Len() > 0{
-			node := heap.Pop(&nodeHeap).(Score)
-			pos := node.pos
+			node := heap.Pop(&nodeHeap).(Score[Vec2])
+			pos := node.info
 			score := node.score
 			
 			if (pos == end){
@@ -99,7 +100,7 @@ func Day18(){
 				}
 
 				visited[neighbour.y * n + neighbour.x] = true
-				heap.Push(&nodeHeap, Score{score: score + 1, pos:neighbour})
+				heap.Push(&nodeHeap, Score[Vec2]{score: score + 1, info:neighbour})
 			}
 
 			addNeighbour(DIR_LEFT)

@@ -50,11 +50,11 @@ func Day19(){
 	fmt.Println("--- Day 19: Linen Layout ---")
 
 	file, err := os.Open("./inputs/day19.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

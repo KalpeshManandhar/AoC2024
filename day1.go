@@ -14,11 +14,12 @@ func Day1() {
 	fmt.Println("--- Day 1: Historian Hysteria ---")
 
 	file, err := os.Open("./inputs/day1.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
+
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())
@@ -70,6 +71,4 @@ func Day1() {
 		
 	fmt.Println("Part 2:", similarScore)
 
-
-	return
 }

@@ -170,11 +170,11 @@ func Day15(){
 	fmt.Println("--- Day 15: Warehouse Woes ---")
 
 	file, err := os.Open("./inputs/day15.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

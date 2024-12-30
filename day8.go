@@ -12,11 +12,11 @@ func Day8(){
 	fmt.Println("--- Day 8: Resonant Collinearity ---")
 
 	file, err := os.Open("./inputs/day8.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())
@@ -57,7 +57,7 @@ func Day8(){
 	}
 	
 	for _, antennas := range freqAntennas{
-		for i, _ := range antennas{
+		for i := range antennas{
 			for j := i+1; j < len(antennas); j++{
 				diff := Vec2{x: antennas[i].x - antennas[j].x, y: antennas[i].y - antennas[j].y}
 
@@ -81,7 +81,7 @@ func Day8(){
 	nAntinodes_p2 := 0
 
 	for _, antennas := range freqAntennas{
-		for i, _ := range antennas{
+		for i:= range antennas{
 			for j := i+1; j < len(antennas); j++{
 				diff := Vec2{x: antennas[i].x - antennas[j].x, y: antennas[i].y - antennas[j].y}
 				

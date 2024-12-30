@@ -6,9 +6,6 @@ import (
 	"strings"
 )
 
-type Vec2 struct{
-	x,y int
-}
 
 
 func findGuardPos(lines []string) (pos Vec2, dir Vec2){
@@ -43,32 +40,7 @@ func findGuardPos(lines []string) (pos Vec2, dir Vec2){
 	return pos, dir
 }
 
-var DIR_RIGHT = Vec2{x: 1, y: 0}
-var DIR_LEFT = Vec2{x: -1, y: 0}
-var DIR_DOWN = Vec2{x: 0, y: 1}
-var DIR_UP = Vec2{x: 0, y: -1}
 
-
-var rotateRight = map[Vec2]Vec2{
-	DIR_DOWN : DIR_LEFT,
-	DIR_LEFT  : DIR_UP,
-	DIR_UP  : DIR_RIGHT,
-	DIR_RIGHT : DIR_DOWN,
-}
-var rotateLeft = map[Vec2]Vec2{
-	DIR_UP : DIR_LEFT,
-	DIR_RIGHT  : DIR_UP,
-	DIR_DOWN  : DIR_RIGHT,
-	DIR_LEFT : DIR_DOWN,
-}
-
-
-var directions = map[Vec2]int{
-	DIR_LEFT : 0x1,
-	DIR_UP   : 0x2,
-	DIR_RIGHT: 0x4,
-	DIR_DOWN : 0x8,
-}
 
 
 
@@ -76,11 +48,11 @@ func Day6(){
 	fmt.Println("--- Day 6: Guard Gallivant ---")
 	
 	file, err := os.Open("./inputs/day6.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

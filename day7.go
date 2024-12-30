@@ -22,11 +22,8 @@ func checkIfValid_AddMul(target int, nums []int) bool {
 	}
 	
 	addRes := target - nums[len(nums)-1]
-	if (checkIfValid_AddMul(addRes, nums[:len(nums)-1])){
-		return true
-	}
-
-	return false
+	
+	return checkIfValid_AddMul(addRes, nums[:len(nums)-1])
 }
 
 func checkIfValid_AddMulConcat(target int, nums []int) bool {
@@ -63,11 +60,8 @@ func checkIfValid_AddMulConcat(target int, nums []int) bool {
 	}
 	
 	addRes := target - nums[len(nums)-1]
-	if (checkIfValid_AddMulConcat(addRes, nums[:len(nums)-1])){
-		return true
-	}
 
-	return false
+	return checkIfValid_AddMulConcat(addRes, nums[:len(nums)-1])
 }
 
 
@@ -76,11 +70,11 @@ func Day7(){
 	fmt.Println("--- Day 7: Bridge Repair ---")
 
 	file, err := os.Open("./inputs/day7.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

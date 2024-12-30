@@ -12,11 +12,11 @@ func Day3(){
 	fmt.Println("--- Day 3: Mull It Over ---")
 
 	file, err := os.Open("./inputs/day3.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())

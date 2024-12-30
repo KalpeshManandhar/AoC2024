@@ -12,11 +12,11 @@ func Day9(){
 	fmt.Println("--- Day 9: Disk Fragmenter ---")
 
 	file, err := os.Open("./inputs/day9.txt")
-	defer file.Close()
 	
 	if err != nil{
 		panic(err)
 	}
+	defer file.Close()
 	info, _ := file.Stat()
 	
 	bytes := make([]byte, info.Size())
